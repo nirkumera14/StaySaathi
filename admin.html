@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin | StaySaathi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header compact">
+      <div class="logo-wrap">
+        <span class="logo-mark">SS</span>
+        <div>
+          <h1>Admin</h1>
+          <p>Inquiry Command Center</p>
+        </div>
+      </div>
+      <nav>
+        <a href="/">Back to Portal</a>
+      </nav>
+    </header>
+
+    <main class="admin-page">
+      <section class="panel">
+        <h2>Access</h2>
+        <p>Enter your admin API key to load metrics and inquiries.</p>
+        <div class="admin-auth">
+          <input id="adminKeyInput" type="password" placeholder="Admin Key" />
+          <button id="loadAdminData" class="accent-btn">Load Dashboard</button>
+        </div>
+        <p id="adminMessage"></p>
+      </section>
+
+      <section class="metric-strip" id="adminMetrics"></section>
+
+      <section class="panel">
+        <h3>Recent Inquiries</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Listing</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Budget</th>
+                <th>Stay</th>
+                <th>Status</th>
+                <th>Created</th>
+              </tr>
+            </thead>
+            <tbody id="adminInquiryRows"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="admin.js" defer></script>
+  </body>
+</html>

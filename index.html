@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StaySaathi India | Discover Verified PGs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="logo-wrap">
+        <span class="logo-mark">SS</span>
+        <div>
+          <h1>StaySaathi</h1>
+          <p>India Smart Living</p>
+        </div>
+      </div>
+      <nav>
+        <a href="#listings">Listings</a>
+        <a href="#why-us">Why Us</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+      <div class="header-actions">
+        <button id="favoritesBtn" class="ghost-btn">
+          Saved <span id="favoriteCount">0</span>
+        </button>
+        <a class="accent-btn" href="#filters">Filter Now</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-content">
+        <p class="kicker">
+          Inspired by top Stay portals. Built for speed, trust, and clarity.
+        </p>
+        <h2>Find your next Stay anywhere in India without endless calls.</h2>
+        <p class="hero-sub">
+          Deep filters, verified tags, transparent rents, and direct owner
+          inquiry in one place.
+        </p>
+        <form id="quickSearchForm" class="quick-search">
+          <input
+            id="quickSearchInput"
+            type="text"
+            placeholder="Search by locality, landmark, or PG name"
+          />
+          <button type="submit">Search</button>
+        </form>
+        <div class="hero-chips">
+          <button class="chip" data-chip="verified">Verified</button>
+          <button class="chip" data-chip="food">Food Included</button>
+          <button class="chip" data-chip="girls">Girls Only</button>
+          <button class="chip" data-chip="budget">Under Rs 7000</button>
+        </div>
+      </div>
+      <div class="hero-metrics">
+        <article>
+          <strong id="metricListings">0</strong>
+          <span>Active Listings</span>
+        </article>
+        <article>
+          <strong id="metricAvgRent">Rs 0</strong>
+          <span>Average Starting Rent</span>
+        </article>
+        <article>
+          <strong>24h</strong>
+          <span>Owner Response Promise</span>
+        </article>
+      </div>
+    </section>
+
+    <main class="layout" id="listings">
+      <aside class="filters" id="filters">
+        <div class="filter-head">
+          <h3>Smart Filters</h3>
+          <button id="clearFilters" type="button">Reset</button>
+        </div>
+
+        <div class="filter-group">
+          <label for="cityInput">City</label>
+          <div class="city-autocomplete">
+            <input
+              id="cityInput"
+              type="text"
+              placeholder="Any city (e.g. Lucknow, Delhi, Pune)"
+              autocomplete="off"
+              aria-autocomplete="list"
+              aria-controls="citySuggestionList"
+            />
+            <div
+              id="citySuggestionList"
+              class="city-suggestion-list hidden"
+              role="listbox"
+              aria-label="City suggestions"
+            ></div>
+          </div>
+          <small class="input-hint"
+            >Start typing and we will suggest cities instantly.</small
+          >
+        </div>
+
+        <div class="filter-group">
+          <span>Popular cities</span>
+          <div class="popular-cities">
+            <button type="button" class="city-quick" data-city="">
+              All India
+            </button>
+            <button type="button" class="city-quick" data-city="Lucknow">
+              Lucknow
+            </button>
+            <button type="button" class="city-quick" data-city="Delhi">
+              Delhi
+            </button>
+            <button type="button" class="city-quick" data-city="Mumbai">
+              Mumbai
+            </button>
+            <button type="button" class="city-quick" data-city="Bangalore">
+              Bangalore
+            </button>
+            <button type="button" class="city-quick" data-city="Pune">
+              Pune
+            </button>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label for="queryInput">Keyword</label>
+          <input
+            id="queryInput"
+            type="text"
+            placeholder="Gomti Nagar, BBD, Metro..."
+          />
+        </div>
+
+        <div class="filter-group">
+          <label for="genderInput">Gender</label>
+          <select id="genderInput">
+            <option value="">Any</option>
+            <option
+              th:each="item : ${genderTypes}"
+              th:value="${item}"
+              th:text="${item}"
+            ></option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="roomTypeInput">Room Type</label>
+          <select id="roomTypeInput">
+            <option value="">Any</option>
+            <option
+              th:each="item : ${roomTypes}"
+              th:value="${item}"
+              th:text="${item}"
+            ></option>
+          </select>
+        </div>
+
+        <div class="filter-group inline-grid">
+          <div>
+            <label for="minRentInput">Min Rent</label>
+            <input
+              id="minRentInput"
+              type="number"
+              min="0"
+              step="500"
+              placeholder="3000"
+            />
+          </div>
+          <div>
+            <label for="maxRentInput">Max Rent</label>
+            <input
+              id="maxRentInput"
+              type="number"
+              min="0"
+              step="500"
+              placeholder="12000"
+            />
+          </div>
+        </div>
+
+        <div class="filter-group toggle-row">
+          <label><input id="foodInput" type="checkbox" /> Food Included</label>
+          <label
+            ><input id="verifiedInput" type="checkbox" /> Verified Only</label
+          >
+        </div>
+
+        <div class="filter-group amenity-list">
+          <span>Amenities</span>
+          <label th:each="item : ${amenities}">
+            <input type="checkbox" name="amenity" th:value="${item}" />
+            <span th:text="${#strings.replace(item, '_', ' ')}"></span>
+          </label>
+        </div>
+
+        <div class="filter-group">
+          <label for="sortInput">Sort By</label>
+          <select id="sortInput">
+            <option
+              th:each="item : ${sortOptions}"
+              th:value="${item}"
+              th:text="${item}"
+            ></option>
+          </select>
+        </div>
+
+        <button id="applyFilters" class="accent-btn full">Apply Filters</button>
+      </aside>
+
+      <section class="listing-section">
+        <div class="listing-toolbar">
+          <h3 id="resultTitle">Curated PGs for you</h3>
+          <p id="resultCount">Loading listings...</p>
+        </div>
+        <div id="activeFilterPills" class="active-filter-pills hidden"></div>
+        <div id="listingGrid" class="listing-grid"></div>
+        <div id="emptyState" class="empty-state hidden">
+          <h4>No listings matched your filters</h4>
+          <p>Try broadening rent range or removing amenity constraints.</p>
+        </div>
+        <button id="loadMore" class="ghost-btn full hidden">Load More</button>
+      </section>
+    </main>
+
+    <section class="compare-bar hidden" id="compareBar">
+      <div>
+        <h4>Compare Shortlisted Rooms</h4>
+        <p id="compareCount">0 selected</p>
+      </div>
+      <button id="openCompare" class="accent-btn">Compare</button>
+    </section>
+
+    <section class="why-us" id="why-us">
+      <article>
+        <h4>Portal-grade filters</h4>
+        <p>
+          Gender, room sharing, food, rent bands, amenities, and relevance-based
+          sorting.
+        </p>
+      </article>
+      <article>
+        <h4>Trust signals</h4>
+        <p>
+          Verified, partner-verified, brand-new tags with review summaries and
+          bed availability.
+        </p>
+      </article>
+      <article>
+        <h4>Actionable listing cards</h4>
+        <p>
+          Save, compare, view full details, and send inquiry in seconds without
+          switching apps.
+        </p>
+      </article>
+    </section>
+
+    <dialog id="compareDialog" class="compare-dialog">
+      <div class="compare-head">
+        <h3>Room Comparison</h3>
+        <button id="closeCompare" class="ghost-btn">Close</button>
+      </div>
+      <div id="compareContent"></div>
+    </dialog>
+
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+    <template id="listingCardTemplate">
+      <article class="listing-card fade-up">
+        <div class="image-wrap">
+          <img alt="PG image" loading="lazy" />
+          <div class="badges"></div>
+          <button class="save-btn" type="button">Save</button>
+        </div>
+        <div class="card-body">
+          <h4></h4>
+          <p class="address"></p>
+          <p class="desc"></p>
+          <div class="price-row"></div>
+          <div class="meta"></div>
+          <div class="amenities"></div>
+          <div class="card-actions">
+            <a class="view-btn">View Details</a>
+            <label
+              ><input type="checkbox" class="compare-check" /> Compare</label
+            >
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>

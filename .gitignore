@@ -1,0 +1,17 @@
+# Maven / build
+/target/
+
+# IDE
+/.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Runtime
+/data/
+*.log
+
+# Local env
+.env

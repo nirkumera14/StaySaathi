@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StaySaathi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header compact">
+      <div class="logo-wrap">
+        <span class="logo-mark">SS</span>
+        <div>
+          <h1>StaySaathi</h1>
+          <p>India Smart Living</p>
+        </div>
+      </div>
+      <nav>
+        <a href="/">Back to Search</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </header>
+
+    <main class="detail-page" data-slug="" th:attr="data-slug=${slug}">
+      <section class="detail-hero">
+        <img id="detailMainImage" alt="Listing image" />
+        <div>
+          <p id="detailBadges" class="badge-line"></p>
+          <h2 id="detailTitle">Loading...</h2>
+          <p id="detailAddress"></p>
+          <p id="detailPrice"></p>
+          <div id="detailMeta" class="meta"></div>
+        </div>
+      </section>
+
+      <section class="detail-grid">
+        <article class="panel">
+          <h3>Overview</h3>
+          <p id="detailDesc"></p>
+          <div id="detailAmenities" class="amenity-chips"></div>
+          <div class="gallery" id="detailGallery"></div>
+        </article>
+
+        <aside class="panel sticky">
+          <h3>Send Inquiry</h3>
+          <form id="inquiryForm" class="inquiry-form">
+            <input type="text" id="inqName" placeholder="Your Name" required />
+            <input
+              type="tel"
+              id="inqPhone"
+              placeholder="Phone Number"
+              required
+            />
+            <input type="email" id="inqEmail" placeholder="Email (optional)" />
+            <input type="date" id="inqMoveIn" />
+            <select id="inqRoomType">
+              <option value="">Preferred Room Type</option>
+              <option value="PRIVATE_ROOM">Private Room</option>
+              <option value="DOUBLE_SHARING">Double Sharing</option>
+              <option value="TRIPLE_SHARING">Triple Sharing</option>
+              <option value="FOUR_PLUS_SHARING">4+ Sharing</option>
+            </select>
+            <input
+              type="number"
+              id="inqBudget"
+              min="1000"
+              max="100000"
+              placeholder="Budget"
+            />
+            <input
+              type="number"
+              id="inqStay"
+              min="1"
+              max="48"
+              placeholder="Expected Stay (months)"
+            />
+            <textarea
+              id="inqMessage"
+              rows="4"
+              placeholder="Anything specific?"
+            ></textarea>
+            <button class="accent-btn full" type="submit">
+              Request Callback
+            </button>
+          </form>
+          <p id="inquiryResponse"></p>
+          <hr />
+          <h4>Direct Contact</h4>
+          <p id="contactInfo"></p>
+          <a id="mapLink" class="ghost-btn full" target="_blank" rel="noopener"
+            >Open on Map</a
+          >
+        </aside>
+      </section>
+
+      <section class="panel room-panel">
+        <h3>Room Options</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Label</th>
+                <th>Price</th>
+                <th>AC</th>
+                <th>Attached Washroom</th>
+                <th>Available Beds</th>
+              </tr>
+            </thead>
+            <tbody id="roomTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h3>Reviews</h3>
+        <p id="reviewAttribution" class="input-hint"></p>
+        <div id="googleAttributions" class="input-hint"></div>
+        <div id="reviewGrid" class="review-grid"></div>
+        <form id="reviewForm" class="review-form">
+          <h4>Write a Review</h4>
+          <input
+            id="reviewerName"
+            type="text"
+            placeholder="Your Name"
+            required
+          />
+          <div class="rating-grid">
+            <label
+              >Overall
+              <input
+                id="overallRating"
+                type="number"
+                min="1"
+                max="5"
+                step="0.1"
+                value="4.5"
+                required
+            /></label>
+            <label
+              >Location
+              <input
+                id="locationRating"
+                type="number"
+                min="1"
+                max="5"
+                step="0.1"
+                value="4.5"
+                required
+            /></label>
+            <label
+              >Staff
+              <input
+                id="staffRating"
+                type="number"
+                min="1"
+                max="5"
+                step="0.1"
+                value="4.5"
+                required
+            /></label>
+            <label
+              >Food
+              <input
+                id="foodRating"
+                type="number"
+                min="1"
+                max="5"
+                step="0.1"
+                value="4.5"
+                required
+            /></label>
+            <label
+              >Cleanliness
+              <input
+                id="cleanlinessRating"
+                type="number"
+                min="1"
+                max="5"
+                step="0.1"
+                value="4.5"
+                required
+            /></label>
+            <label
+              >WiFi
+              <input
+                id="wifiRating"
+                type="number"
+                min="1"
+                max="5"
+                step="0.1"
+                value="4.5"
+                required
+            /></label>
+          </div>
+          <textarea
+            id="reviewComment"
+            rows="4"
+            minlength="10"
+            placeholder="Share your stay experience"
+            required
+          ></textarea>
+          <button class="accent-btn" type="submit">Submit Review</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="detail.js" defer></script>
+  </body>
+</html>
