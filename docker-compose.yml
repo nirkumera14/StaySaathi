@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: pgpulse-postgres
+    environment:
+      POSTGRES_DB: pgplatform
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: SS-app
+    depends_on:
+      - postgres
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      PORT: 8080
+      DATABASE_URL: jdbc:postgresql://postgres:5432/pgplatform
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: postgres
+      APP_ADMIN_KEY: pg-admin-2026
+    ports:
+      - "8080:8080"
+
+volumes:
+  postgres_data:
