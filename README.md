@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # StaySaathi (Java Full-Stack)
 
 It includes rich search/filter/sort, verified badges, listing detail pages, inquiry booking, reviews, shortlist compare, favorites, and an admin inquiry dashboard.
@@ -153,3 +154,6 @@ App will be available on `http://localhost:8080`.
 - The app seeds data only when no listings exist.
 - India city catalog lives in `src/main/resources/india-statutory-towns.csv`.
 - This is a full working baseline intended for quick deployment and further customization.
+=======
+# StaySaathi
+>>>>>>> db75722fd21e5c24e6373d1ff2ab94474036d776
