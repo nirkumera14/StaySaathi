@@ -16,7 +16,7 @@
     <description>Full-stack PG discovery platform inspired by top Indian rental sites</description>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>25</java.version>
     </properties>
 
     <dependencies>
